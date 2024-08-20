@@ -107,6 +107,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""tilt"",
+                    ""type"": ""Button"",
+                    ""id"": ""44a0fbd2-34bb-4bfd-9785-15c342c499d7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -219,6 +228,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Whammy"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4f9a40c9-f3de-42f5-9ce8-cb8e4328554d"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""tilt"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -236,6 +256,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_GamePlay_StrumDown = m_GamePlay.FindAction("StrumDown", throwIfNotFound: true);
         m_GamePlay_Start = m_GamePlay.FindAction("Start", throwIfNotFound: true);
         m_GamePlay_Whammy = m_GamePlay.FindAction("Whammy", throwIfNotFound: true);
+        m_GamePlay_tilt = m_GamePlay.FindAction("tilt", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -306,6 +327,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_GamePlay_StrumDown;
     private readonly InputAction m_GamePlay_Start;
     private readonly InputAction m_GamePlay_Whammy;
+    private readonly InputAction m_GamePlay_tilt;
     public struct GamePlayActions
     {
         private @PlayerControls m_Wrapper;
@@ -319,6 +341,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @StrumDown => m_Wrapper.m_GamePlay_StrumDown;
         public InputAction @Start => m_Wrapper.m_GamePlay_Start;
         public InputAction @Whammy => m_Wrapper.m_GamePlay_Whammy;
+        public InputAction @tilt => m_Wrapper.m_GamePlay_tilt;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -355,6 +378,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Whammy.started += instance.OnWhammy;
             @Whammy.performed += instance.OnWhammy;
             @Whammy.canceled += instance.OnWhammy;
+            @tilt.started += instance.OnTilt;
+            @tilt.performed += instance.OnTilt;
+            @tilt.canceled += instance.OnTilt;
         }
 
         private void UnregisterCallbacks(IGamePlayActions instance)
@@ -386,6 +412,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Whammy.started -= instance.OnWhammy;
             @Whammy.performed -= instance.OnWhammy;
             @Whammy.canceled -= instance.OnWhammy;
+            @tilt.started -= instance.OnTilt;
+            @tilt.performed -= instance.OnTilt;
+            @tilt.canceled -= instance.OnTilt;
         }
 
         public void RemoveCallbacks(IGamePlayActions instance)
@@ -414,5 +443,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnStrumDown(InputAction.CallbackContext context);
         void OnStart(InputAction.CallbackContext context);
         void OnWhammy(InputAction.CallbackContext context);
+        void OnTilt(InputAction.CallbackContext context);
     }
 }
