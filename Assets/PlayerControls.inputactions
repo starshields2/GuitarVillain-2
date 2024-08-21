@@ -87,9 +87,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "tilt",
+                    "name": "Select",
                     "type": "Button",
                     "id": "44a0fbd2-34bb-4bfd-9785-15c342c499d7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Settings",
+                    "type": "Value",
+                    "id": "d159f44c-a559-43d1-8784-bdfb92c666d9",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Settings2",
+                    "type": "Button",
+                    "id": "a753a51b-3f1e-4f51-bfba-0fc452fd2906",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -210,11 +228,33 @@
                 {
                     "name": "",
                     "id": "4f9a40c9-f3de-42f5-9ce8-cb8e4328554d",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "137e8bdc-ce70-48ef-b41c-4dc040e5440d",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Settings",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eaeb2af2-8432-4162-bc54-5444b97522c7",
                     "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "tilt",
+                    "action": "Settings2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

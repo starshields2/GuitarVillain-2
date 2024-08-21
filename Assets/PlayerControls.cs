@@ -109,9 +109,27 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""tilt"",
+                    ""name"": ""Select"",
                     ""type"": ""Button"",
                     ""id"": ""44a0fbd2-34bb-4bfd-9785-15c342c499d7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Settings"",
+                    ""type"": ""Value"",
+                    ""id"": ""d159f44c-a559-43d1-8784-bdfb92c666d9"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Settings2"",
+                    ""type"": ""Button"",
+                    ""id"": ""a753a51b-3f1e-4f51-bfba-0fc452fd2906"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -232,11 +250,33 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""4f9a40c9-f3de-42f5-9ce8-cb8e4328554d"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""137e8bdc-ce70-48ef-b41c-4dc040e5440d"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Settings"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eaeb2af2-8432-4162-bc54-5444b97522c7"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""tilt"",
+                    ""action"": ""Settings2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -256,7 +296,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_GamePlay_StrumDown = m_GamePlay.FindAction("StrumDown", throwIfNotFound: true);
         m_GamePlay_Start = m_GamePlay.FindAction("Start", throwIfNotFound: true);
         m_GamePlay_Whammy = m_GamePlay.FindAction("Whammy", throwIfNotFound: true);
-        m_GamePlay_tilt = m_GamePlay.FindAction("tilt", throwIfNotFound: true);
+        m_GamePlay_Select = m_GamePlay.FindAction("Select", throwIfNotFound: true);
+        m_GamePlay_Settings = m_GamePlay.FindAction("Settings", throwIfNotFound: true);
+        m_GamePlay_Settings2 = m_GamePlay.FindAction("Settings2", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -327,7 +369,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_GamePlay_StrumDown;
     private readonly InputAction m_GamePlay_Start;
     private readonly InputAction m_GamePlay_Whammy;
-    private readonly InputAction m_GamePlay_tilt;
+    private readonly InputAction m_GamePlay_Select;
+    private readonly InputAction m_GamePlay_Settings;
+    private readonly InputAction m_GamePlay_Settings2;
     public struct GamePlayActions
     {
         private @PlayerControls m_Wrapper;
@@ -341,7 +385,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @StrumDown => m_Wrapper.m_GamePlay_StrumDown;
         public InputAction @Start => m_Wrapper.m_GamePlay_Start;
         public InputAction @Whammy => m_Wrapper.m_GamePlay_Whammy;
-        public InputAction @tilt => m_Wrapper.m_GamePlay_tilt;
+        public InputAction @Select => m_Wrapper.m_GamePlay_Select;
+        public InputAction @Settings => m_Wrapper.m_GamePlay_Settings;
+        public InputAction @Settings2 => m_Wrapper.m_GamePlay_Settings2;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -378,9 +424,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Whammy.started += instance.OnWhammy;
             @Whammy.performed += instance.OnWhammy;
             @Whammy.canceled += instance.OnWhammy;
-            @tilt.started += instance.OnTilt;
-            @tilt.performed += instance.OnTilt;
-            @tilt.canceled += instance.OnTilt;
+            @Select.started += instance.OnSelect;
+            @Select.performed += instance.OnSelect;
+            @Select.canceled += instance.OnSelect;
+            @Settings.started += instance.OnSettings;
+            @Settings.performed += instance.OnSettings;
+            @Settings.canceled += instance.OnSettings;
+            @Settings2.started += instance.OnSettings2;
+            @Settings2.performed += instance.OnSettings2;
+            @Settings2.canceled += instance.OnSettings2;
         }
 
         private void UnregisterCallbacks(IGamePlayActions instance)
@@ -412,9 +464,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Whammy.started -= instance.OnWhammy;
             @Whammy.performed -= instance.OnWhammy;
             @Whammy.canceled -= instance.OnWhammy;
-            @tilt.started -= instance.OnTilt;
-            @tilt.performed -= instance.OnTilt;
-            @tilt.canceled -= instance.OnTilt;
+            @Select.started -= instance.OnSelect;
+            @Select.performed -= instance.OnSelect;
+            @Select.canceled -= instance.OnSelect;
+            @Settings.started -= instance.OnSettings;
+            @Settings.performed -= instance.OnSettings;
+            @Settings.canceled -= instance.OnSettings;
+            @Settings2.started -= instance.OnSettings2;
+            @Settings2.performed -= instance.OnSettings2;
+            @Settings2.canceled -= instance.OnSettings2;
         }
 
         public void RemoveCallbacks(IGamePlayActions instance)
@@ -443,6 +501,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnStrumDown(InputAction.CallbackContext context);
         void OnStart(InputAction.CallbackContext context);
         void OnWhammy(InputAction.CallbackContext context);
-        void OnTilt(InputAction.CallbackContext context);
+        void OnSelect(InputAction.CallbackContext context);
+        void OnSettings(InputAction.CallbackContext context);
+        void OnSettings2(InputAction.CallbackContext context);
     }
 }
