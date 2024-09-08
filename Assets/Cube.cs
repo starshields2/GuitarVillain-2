@@ -19,7 +19,13 @@ public class Cube : MonoBehaviour
     public GameObject BoardD;
     public GameObject BoardG;
     public GameObject BoardB;
-   
+
+    public bool gPress;
+    public bool rPress;
+    public bool yPress;
+    public bool bPress;
+    public bool oPress;
+    public bool strum;
 
     void Start()
     {
@@ -47,74 +53,92 @@ public class Cube : MonoBehaviour
 
         controls.GamePlay.StrumUp.performed += ctx => Strum();
         controls.GamePlay.StrumDown.performed += ctx => Strum();
+        controls.GamePlay.StrumUp.canceled += ctx => StrumRelease();
+        controls.GamePlay.StrumDown.canceled += ctx => StrumRelease();
     }
     //green buttons E
-    void GreenPressed()
+   public void GreenPressed()
     {
-        Debug.Log("green pressed");
+        gPress = true;
+      //  Debug.Log("green pressed");
         BoardE.transform.localScale = originalScale * scaleFactor; // Increase the size
         sound_E.Play();
     }
        
-    void GreenReleased()
+  public  void GreenReleased()
     {
-        Debug.Log("green released");
+        gPress = false;
+     //   Debug.Log("green released");
         BoardE.transform.localScale = originalScale; // Revert to the original size
     }
     //red buttons A
     void RedPressed()
     {
-        Debug.Log("red pressed");
+        rPress = true;
+      //  Debug.Log("red pressed");
         BoardA.transform.localScale = originalScale * scaleFactor;
         sound_A.Play();
     }
     void RedReleased()
     {
-        Debug.Log("blue released");
+        rPress = false;
+      //  Debug.Log("blue released");
         BoardA.transform.localScale = originalScale;
     }
     //yellow buttons D
     void YellowPressed()
     {
-        Debug.Log("yellow pressed");
+        yPress = true;
+       // Debug.Log("yellow pressed");
         BoardD.transform.localScale = originalScale * scaleFactor;
         sound_D.Play();
     }
     void YellowReleased()
     {
-        Debug.Log("yellow released");
+        yPress = false;
+      //  Debug.Log("yellow released");
         BoardD.transform.localScale = originalScale;
     }
     //blue buttons G
 
     void BluePressed()
     {
-        Debug.Log("blue pressed");
+        bPress = true;
+     //   Debug.Log("blue pressed");
         BoardG.transform.localScale = originalScale * scaleFactor;
         sound_G.Play();
     }
 
     void BlueReleased()
     {
-        Debug.Log("blue released");
+        bPress = false;
+      //  Debug.Log("blue released");
         BoardG.transform.localScale = originalScale;
     }
     //Orange buttons b
     void OrangePressed()
     {
-        Debug.Log("orange pressed");
+        oPress = true;
+       // Debug.Log("orange pressed");
         BoardB.transform.localScale = originalScale * scaleFactor;
         sound_B.Play();
     }
     void OrangeReleased()
     {
-        Debug.Log("blue released");
+        oPress = false; 
+      //  Debug.Log("blue released");
         BoardB.transform.localScale = originalScale;
     }
     void Strum()
     {
-        Debug.Log("Strum");
+        strum = true;
+       // Debug.Log("Strum");
         transform.Rotate(45f, 10f, 4f);
+    }
+
+    void StrumRelease()
+    {
+        strum = false;
     }
 
     void OnEnable()

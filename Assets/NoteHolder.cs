@@ -33,5 +33,10 @@ public class NoteHolder : MonoBehaviour
         {
             transform.position -= new Vector3(0f, 0f, bpm * Time.deltaTime);
         }
+
+        if(bpm <= 0f)
+        {
+            bpm = 1f;
+        }
     }
 }
