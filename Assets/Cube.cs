@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Cube : MonoBehaviour
 {
+    public GuideRail[] guideRail;
     PlayerControls controls;
     public float scaleFactor = 1.1f; // The factor by which to scale the cube
     private Vector3 originalScale;
@@ -63,6 +64,7 @@ public class Cube : MonoBehaviour
       //  Debug.Log("green pressed");
         BoardE.transform.localScale = originalScale * scaleFactor; // Increase the size
         sound_E.Play();
+        guideRail[0].MeshSwap();
     }
        
   public  void GreenReleased()
@@ -70,6 +72,7 @@ public class Cube : MonoBehaviour
         gPress = false;
      //   Debug.Log("green released");
         BoardE.transform.localScale = originalScale; // Revert to the original size
+        guideRail[0].MeshReverse();
     }
     //red buttons A
     void RedPressed()
@@ -78,12 +81,14 @@ public class Cube : MonoBehaviour
       //  Debug.Log("red pressed");
         BoardA.transform.localScale = originalScale * scaleFactor;
         sound_A.Play();
+        guideRail[1].MeshSwap();
     }
     void RedReleased()
     {
         rPress = false;
       //  Debug.Log("blue released");
         BoardA.transform.localScale = originalScale;
+        guideRail[1].MeshReverse();
     }
     //yellow buttons D
     void YellowPressed()
@@ -92,12 +97,14 @@ public class Cube : MonoBehaviour
        // Debug.Log("yellow pressed");
         BoardD.transform.localScale = originalScale * scaleFactor;
         sound_D.Play();
+        guideRail[2].MeshSwap();
     }
     void YellowReleased()
     {
         yPress = false;
       //  Debug.Log("yellow released");
         BoardD.transform.localScale = originalScale;
+        guideRail[2].MeshReverse();
     }
     //blue buttons G
 
@@ -107,6 +114,7 @@ public class Cube : MonoBehaviour
      //   Debug.Log("blue pressed");
         BoardG.transform.localScale = originalScale * scaleFactor;
         sound_G.Play();
+        guideRail[3].MeshSwap();
     }
 
     void BlueReleased()
@@ -114,6 +122,7 @@ public class Cube : MonoBehaviour
         bPress = false;
       //  Debug.Log("blue released");
         BoardG.transform.localScale = originalScale;
+        guideRail[3].MeshReverse();
     }
     //Orange buttons b
     void OrangePressed()
@@ -122,12 +131,15 @@ public class Cube : MonoBehaviour
        // Debug.Log("orange pressed");
         BoardB.transform.localScale = originalScale * scaleFactor;
         sound_B.Play();
+        guideRail[4].MeshSwap();
+
     }
     void OrangeReleased()
     {
         oPress = false; 
       //  Debug.Log("blue released");
         BoardB.transform.localScale = originalScale;
+        guideRail[4].MeshReverse();
     }
     void Strum()
     {

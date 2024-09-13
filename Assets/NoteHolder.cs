@@ -10,7 +10,7 @@ public class NoteHolder : MonoBehaviour
     public GameObject G;
     public GameObject B;
 
-    public float bpm;
+    public float bpm = 60f;
     public bool hasStarted;
     // Start is called before the first frame update
     void Start()

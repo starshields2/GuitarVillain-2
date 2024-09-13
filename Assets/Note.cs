@@ -51,41 +51,41 @@ public class Note : MonoBehaviour
             Debug.Log("Green note hit!");
             this.gameObject.SetActive(false);
             _manager.playerScore += 1;
-            _bpm.bpm += 0.2f;
+           
         }
         else if (guitarControl.rPress && noteColor == "Red")
         {
             Debug.Log("Red note hit!");
             this.gameObject.SetActive(false);
             _manager.playerScore += 1;
-            _bpm.bpm += 0.2f;
+            
         }
         else if (guitarControl.yPress && noteColor == "Yellow")
         {
             Debug.Log("Yellow note hit!");
             this.gameObject.SetActive(false);
             _manager.playerScore += 1;
-            _bpm.bpm += 0.2f;
+            
         }
         else if (guitarControl.bPress && noteColor == "Blue")
         {
             Debug.Log("Blue note hit!");
             this.gameObject.SetActive(false);
             _manager.playerScore += 1;
-            _bpm.bpm += 0.2f;
+            
         }
         else if (guitarControl.oPress && noteColor == "Orange")
         {
             Debug.Log("Orange note hit!");
             this.gameObject.SetActive(false);
             _manager.playerScore += 1;
-            _bpm.bpm += 0.2f;
+            
         }
         else
         {
             Debug.Log("Wrong button pressed!");
             _manager.playerScore -= 1;
-            _bpm.bpm -= 1f;
+           
         }
     }
 
@@ -99,6 +99,13 @@ public class Note : MonoBehaviour
             // Assign the note color based on the tag of the note (assuming the note's tag is its color)
             
         }
+        if(other.tag == "BoomBar")
+        {
+            _manager.playerScore -= 1;
+            
+            this.gameObject.SetActive(false);
+        }
+
     }
 
     void OnTriggerExit(Collider other)
@@ -106,6 +113,13 @@ public class Note : MonoBehaviour
         if (other.tag == "Activator")
         {
             canBePressed = false;
+        }
+
+        if (other.tag == "BoomBar")
+        {
+            _manager.playerScore -= 1;
+
+            this.gameObject.SetActive(false);
         }
     }
 }
