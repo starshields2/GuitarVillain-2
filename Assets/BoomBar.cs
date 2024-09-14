@@ -19,8 +19,9 @@ public class BoomBar : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "FinishBar")
+        if(other.tag == "BoomBar")
         {
+            Debug.Log("finish");
             overCanvas.SetActive(true);
             Time.timeScale = 0f;
         }

@@ -23,6 +23,7 @@ public class GameControl : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 0f;
         playSpeedRelaxed = 2f;
         playSpeedStressed = 4f;
         playSpeedUberStress = 8f;
@@ -99,5 +100,10 @@ public class GameControl : MonoBehaviour
         yield return new WaitForSeconds(3f);
         isAnySoundPlaying = false;
         isRelaxedCoroutineRunning = false; // Allow this coroutine to run again if needed
+    }
+
+    public void StartGame()
+    {
+        Time.timeScale = 1f;
     }
 }
