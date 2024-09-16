@@ -5,6 +5,7 @@ using TMPro;
 
 public class GameControl : MonoBehaviour
 {
+    public Animator shake;
     public AudioSource music;
     public NoteHolder noteHolder;
     public float playSpeedStressed;
@@ -45,6 +46,10 @@ public class GameControl : MonoBehaviour
         {
             doingWell = true;
         }
+        else
+        {
+            doingWell = false;
+        }
 
         if (doingWell && !isStressedCoroutineRunning)
         {
@@ -68,6 +73,7 @@ public class GameControl : MonoBehaviour
 
     IEnumerator PlayStressed()
     {
+        shake.SetBool("doingWell", false);
         isStressedCoroutineRunning = true;
         noteHolder.bpm = playSpeedStressed;
         Debug.Log("Stressed");
@@ -87,6 +93,7 @@ public class GameControl : MonoBehaviour
 
     IEnumerator PlayWell()
     {
+        shake.SetBool("doingWell", true);
         isRelaxedCoroutineRunning = true;
         noteHolder.bpm = playSpeedRelaxed;
         Debug.Log("Not Stressed!");
