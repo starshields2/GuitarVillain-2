@@ -5,6 +5,8 @@ using UnityEngine;
 public class BoomBar : MonoBehaviour
 {
     public GameObject overCanvas;
+    public AudioSource music;
+    public AudioSource finish;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +26,8 @@ public class BoomBar : MonoBehaviour
             Debug.Log("finish");
             overCanvas.SetActive(true);
             Time.timeScale = 0f;
+            music.Stop();
+            finish.Play();
         }
     }
 }

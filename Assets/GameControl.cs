@@ -5,6 +5,7 @@ using TMPro;
 
 public class GameControl : MonoBehaviour
 {
+    public AudioSource music;
     public NoteHolder noteHolder;
     public float playSpeedStressed;
     public float playSpeedRelaxed;
@@ -23,6 +24,7 @@ public class GameControl : MonoBehaviour
 
     void Start()
     {
+        music.Stop();
         Time.timeScale = 0f;
         playSpeedRelaxed = 2f;
         playSpeedStressed = 4f;
@@ -78,7 +80,7 @@ public class GameControl : MonoBehaviour
         }
 
         yield return new WaitWhile(() => currentSound.isPlaying);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(8f);
         isAnySoundPlaying = false;
         isStressedCoroutineRunning = false; // Allow this coroutine to run again if needed
     }
@@ -97,7 +99,7 @@ public class GameControl : MonoBehaviour
         }
 
         yield return new WaitWhile(() => currentSound.isPlaying);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(8f);
         isAnySoundPlaying = false;
         isRelaxedCoroutineRunning = false; // Allow this coroutine to run again if needed
     }
@@ -105,5 +107,6 @@ public class GameControl : MonoBehaviour
     public void StartGame()
     {
         Time.timeScale = 1f;
+        music.Play();
     }
 }
