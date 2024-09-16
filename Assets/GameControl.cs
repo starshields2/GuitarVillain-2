@@ -17,7 +17,7 @@ public class GameControl : MonoBehaviour
     public AudioSource[] goodSounds;
     public bool isAnySoundPlaying = false;
     public bool doingWell;
-
+    public Slider jam;
     public AudioSource currentSound;
 
     private bool isStressedCoroutineRunning = false;
@@ -27,13 +27,18 @@ public class GameControl : MonoBehaviour
     {
         music.Stop();
         Time.timeScale = 0f;
-        playSpeedRelaxed = 2f;
-        playSpeedStressed = 4f;
+        playSpeedRelaxed = 3f;
+        playSpeedStressed = 6f;
         playSpeedUberStress = 8f;
     }
 
     void Update()
     {
+
+        if(jam.value >= 85)
+        {
+            Debug.Log("JAMMING!!!");
+        }
         // Display score
         score.text = playerScore.ToString();
 

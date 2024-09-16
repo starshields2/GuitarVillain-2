@@ -38,5 +38,6 @@ public class NoteHolder : MonoBehaviour
         {
             bpm = 1f;
         }
+      
     }
 }

@@ -56,6 +56,9 @@ public class Cube : MonoBehaviour
         controls.GamePlay.StrumDown.performed += ctx => Strum();
         controls.GamePlay.StrumUp.canceled += ctx => StrumRelease();
         controls.GamePlay.StrumDown.canceled += ctx => StrumRelease();
+
+        controls.GamePlay.Whammy.canceled += ctx => Whammy();
+        controls.GamePlay.Whammy.performed += ctx => WhammyOver();
     }
     //green buttons E
    public void GreenPressed()
@@ -151,6 +154,26 @@ public class Cube : MonoBehaviour
     void StrumRelease()
     {
         strum = false;
+    }
+
+    void Whammy()
+    {
+        Debug.Log("Whammied");
+        gPress = true;
+        rPress = true;
+        yPress = true;
+        bPress = true;
+        oPress = true;
+    }
+    
+    void WhammyOver()
+    {
+        Debug.Log("Whammy Released");
+        gPress = false;
+        rPress = false;
+        yPress = false;
+        bPress = false;
+        oPress = false;
     }
 
     void OnEnable()

@@ -51,6 +51,7 @@ public class Note : MonoBehaviour
             Debug.Log("Green note hit!");
             this.gameObject.SetActive(false);
             _manager.playerScore += 1;
+            _manager.jam.value += 2;
            
         }
         else if (guitarControl.rPress && noteColor == "Red")
@@ -58,34 +59,39 @@ public class Note : MonoBehaviour
             Debug.Log("Red note hit!");
             this.gameObject.SetActive(false);
             _manager.playerScore += 1;
-            
+            _manager.jam.value += 2;
+
         }
         else if (guitarControl.yPress && noteColor == "Yellow")
         {
             Debug.Log("Yellow note hit!");
             this.gameObject.SetActive(false);
             _manager.playerScore += 1;
-            
+            _manager.jam.value += 2;
+
         }
         else if (guitarControl.bPress && noteColor == "Blue")
         {
             Debug.Log("Blue note hit!");
             this.gameObject.SetActive(false);
             _manager.playerScore += 1;
-            
+            _manager.jam.value += 2;
+
         }
         else if (guitarControl.oPress && noteColor == "Orange")
         {
             Debug.Log("Orange note hit!");
             this.gameObject.SetActive(false);
             _manager.playerScore += 1;
-            
+            _manager.jam.value += 2;
+
         }
         else
         {
             Debug.Log("Wrong button pressed!");
             _manager.playerScore -= 1;
-           
+            _manager.jam.value += 0.2f;
+
         }
     }
 
